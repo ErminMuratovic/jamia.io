@@ -12,7 +12,6 @@
     "lint": "jshint *.ts **/*.ts",
     "lint:checkstyle": "npm run lint --reporter checkstyle > checkstyle.xml",
     "test": "mocha --reporter spec --compilers ts:ts-node/register test/**/*.test.ts"
-    /*"pretest": "npm run lint"*/
   },
   "repository": {
     "type": "git",
