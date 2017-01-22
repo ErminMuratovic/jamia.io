@@ -4,7 +4,7 @@ Application for managing your Jamia. Keep track of your members and manage your 
 
 ## Getting Started
 
-Visit our webiste [jamia.io](https://jamia.io/).
+Visit our webiste [jamia.io](https://jamia.io/){:target="_blank"}.
 
 ### Prerequisites
 
@@ -20,7 +20,7 @@ Please read [CONTRIBUTING.md](CONTRIBUTING.md) for details on our code of conduc
 
 ## Versioning
 
-We use [SemVer](http://semver.org/) for versioning. For the versions available, see the [tags on this repository](https://github.com/ermin-muratovic/jamia.io/tags). 
+We use [SemVer](http://semver.org/){:target="_blank"} for versioning. For the versions available, see the [tags on this repository](https://github.com/ermin-muratovic/jamia.io/tags). 
 
 ## Authors
 
@@ -28,7 +28,7 @@ We use [SemVer](http://semver.org/) for versioning. For the versions available, 
 
 ## License
 
-This project is licensed under the GPL License - see the [LICENSE.md](LICENSE.md) file for details.
+This project is licensed under the GPL License - see the [LICENSE](LICENSE) file for details.
 
 ## Acknowledgments
 
