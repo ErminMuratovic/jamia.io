@@ -1,10 +1,10 @@
 # jamia.io
 
-Application for managing your Jamia. Keep track of your members and manage your finances.
+Application for managing your [Jamia](https://en.wikipedia.org/wiki/Jamia). Keep track of your members and manage your finances.
 
 ## Getting Started
 
-Visit our webiste <a href="https://jamia.io/" target="_blank">jamia.io</a>.
+Visit our webiste [jamia.io](https://jamia.io/).
 
 ### Prerequisites
 
@@ -20,7 +20,7 @@ Please read [CONTRIBUTING.md](CONTRIBUTING.md) for details on our code of conduc
 
 ## Versioning
 
-We use <a href="http://semver.org/" target="_blank">SemVer</a> for versioning. For the versions available, see the [tags on this repository](https://github.com/ermin-muratovic/jamia.io/tags). 
+We use [SemVer](http://semver.org/) for versioning. For the versions available, see the [tags on this repository](https://github.com/ermin-muratovic/jamia.io/tags). 
 
 ## Authors
 
