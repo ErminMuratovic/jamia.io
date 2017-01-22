@@ -23,6 +23,7 @@ Thumbs.db
 logs
 *.log
 npm-debug.log*
+npm
 
 # Coverage directory used by tools like istanbul
 coverage
