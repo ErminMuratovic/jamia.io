@@ -1,6 +1,7 @@
 # generated files
 bin/
 gen/
+dist/
 
 # Local configuration file (sdk path, etc)
 local.properties
@@ -14,6 +15,9 @@ Thumbs.db
 # Eclipse project files
 .classpath
 .project
+
+# IntelliJ project files
+*.iml
 
 # Logs
 logs
