@@ -6,8 +6,8 @@ import * as bodyParser from "body-parser";
 import * as mongoose from "mongoose";
 import * as logger from "morgan";
 
+import {Database} from "./model/database";
 import * as Jamia from "./model/jamia";
-// TODO: import * as database from "./model/database";
 
 /**
  * The application.
@@ -15,6 +15,9 @@ import * as Jamia from "./model/jamia";
  * @class App
  */
 class App {
+
+    private port:number;
+    private database:Database;
 
     public app:express.Application;
 
@@ -55,36 +58,50 @@ class App {
      * @return void
      */
     private config() {
-        //configure database
-        // TODO: database.connect("mongodb://localhost/jamiadb");
-        mongoose.connect("mongodb://localhost/mydb");
+        this.connectDatabase();
+        this.mountLogger();
+        this.configureJade();
+        this.configureBodyParser();
+        this.mountErrorHandler();
+        this.listen();
+    }
 
-        //configure jade
+    private connectDatabase() {
+        this.database = new Database();
+        this.database.connect();
+    }
+
+    private listen() {
+        let port = process.env.API_PORT || 3000;
+        this.app.listen(port, function () {
+            console.log("App listening on port "+port);
+        });
+    }
+
+    private configureJade() {
         this.app.set("views", path.join(__dirname, "views"));
         this.app.set("view engine", "jade");
+    }
 
-        //mount logger
-        this.app.use(logger("dev"));
+    private mountLogger() {
+        if(process.env.NODE_ENV === "dev") {
+            this.app.use(logger("dev"));
+        } else if(process.env.NODE_ENV !== "test") { //don't show the log when it is test
+            this.app.use(logger('common'));
+        }
+    }
 
-        //mount json form parser
+    private configureBodyParser() {
         this.app.use(bodyParser.json());
-
-        //mount query string parser
         this.app.use(bodyParser.urlencoded({extended: true}));
+    }
 
-        //add static paths
-        // this.app.use(express.static(path.join(__dirname, "public")));
-        // this.app.use(express.static(path.join(__dirname, "bower_components")));
-
+    private mountErrorHandler() {
         // catch 404 and forward to error handler
         this.app.use(function (err:any, req:express.Request, res:express.Response, next:express.NextFunction) {
             var error = new Error("Not Found");
             err.status = 404;
             next(err);
-        });
-
-        this.app.listen(3000, function () {
-            console.log("App listening on port 3000");
         });
     }
 
@@ -125,7 +142,6 @@ class App {
                 if (err) {
                     res.json({info: "error during find Jamias", error: err});
                 }
-                ;
                 res.json({info: "Jamias found successfully", data: jamias});
             });
         });

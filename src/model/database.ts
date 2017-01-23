@@ -7,7 +7,10 @@ import * as mongoose from "mongoose";
  *
  * @class Database
  */
-class Database {
+export class Database {
+
+    private db_base_uri:string;
+    private db_name:string;
 
     /**
      * Constructor.
@@ -16,7 +19,8 @@ class Database {
      * @constructor
      */
     constructor() {
-        console.log("constructor");
+        this.db_base_uri = process.env.DB_URI || "mongodb://localhost";
+        this.db_name = "/jamiaiodb";
     }
 
     /**
@@ -27,9 +31,7 @@ class Database {
      * @param {}
      * @return void
      */
-    private connect() {
-        mongoose.connect("mongodb://localhost/nodewebappdb");
+    public connect() {
+        mongoose.connect(this.db_base_uri+this.db_name);
     }
 }
-
-export = Database;

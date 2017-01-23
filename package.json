@@ -5,13 +5,14 @@
   "main": "server.js",
   "scripts": {
     "start": "node dist/server.js",
+    "start:dev": "SET NODE_ENV=dev && SET API_PORT=4000 && node dist/server.js",
     "compile": "npm run compile:ts",
     "compile:ts": "tsc",
     "clean": "rimraf dist/*",
     "precompile": "npm run clean",
     "lint": "jshint *.ts **/*.ts",
     "lint:checkstyle": "npm run lint --reporter checkstyle > checkstyle.xml",
-    "test": "mocha --reporter spec --compilers ts:ts-node/register test/**/*.test.ts"
+    "test": "mocha --reporter spec --compilers ts:ts-node/register test/**/*.test.ts --timeout 10000"
   },
   "repository": {
     "type": "git",
