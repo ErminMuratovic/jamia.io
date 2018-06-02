@@ -1,6 +1,8 @@
 FROM nginx:1.13.9-alpine
 MAINTAINER muratovic <office@muratovic.at>
 
+ARG compileargs
+
 ENV TEMP="/tmp/app"
 ENV NGINX_HTML="/usr/share/nginx/html"
 
@@ -18,7 +20,7 @@ COPY package.json tsconfig.json $TEMP/
 COPY . $TEMP/
 RUN npm install
 
-RUN npm run compile
+RUN npm run compile -- ${compileargs}
 RUN cp -R ./dist/* $NGINX_HTML/
 RUN cp -R ./src/_assets/* $NGINX_HTML/_assets/
 RUN rm -Rf $TEMP &&\
