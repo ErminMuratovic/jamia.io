@@ -1,0 +1,5 @@
+{
+  "host": "mongodb",
+  "db": "jamia",
+  "directory": "src/db"
+}

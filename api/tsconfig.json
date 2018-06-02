@@ -8,10 +8,11 @@
     "experimentalDecorators": true,
     "removeComments": true,
     "noImplicitAny": false,
+    "allowJs": true,
     "outDir": "dist"
   },
   "include": [
-    "src/**/*.ts"
+    "src/**/*"
   ],
   "exclude": [
     "node_modules"
