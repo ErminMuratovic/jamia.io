@@ -26,7 +26,8 @@ var transactiontypes = [];
 var vazifaTypes = ["K1", "K.1", "K-1"];
 
 var workbook = new excel.Workbook();
-workbook.xlsx.readFile("bkz-klagenfurt-kassabuch-2017.xlsx")
+console.log("Processing file", process.argv[2]);
+workbook.xlsx.readFile(process.argv[2])
     .then(function() {
         workbook.eachSheet(function(worksheet) {
             worksheet.eachRow({includeEmpty: false}, function(row) {
@@ -39,10 +40,10 @@ workbook.xlsx.readFile("bkz-klagenfurt-kassabuch-2017.xlsx")
             });
         });
 
-        fs.writeFile('result/jamias.json', JSON.stringify([jamia], null, 4));
-        fs.writeFile('result/users.json', JSON.stringify(users, null, 4));
-        fs.writeFile('result/transactiontypes.json', JSON.stringify(transactiontypes, null, 4));
-        fs.writeFile('result/transactions.json', JSON.stringify(transactions, null, 4));
+        fs.writeFile('../../api/src/db/data/jamias.json', JSON.stringify([jamia], null, 4));
+        fs.writeFile('../../api/src/db/data/users.json', JSON.stringify(users, null, 4));
+        fs.writeFile('../../api/src/db/data/transactiontypes.json', JSON.stringify(transactiontypes, null, 4));
+        fs.writeFile('../../api/src/db/data/transactions.json', JSON.stringify(transactions, null, 4));
     });
 
 function processKassabuchRow(row) {
