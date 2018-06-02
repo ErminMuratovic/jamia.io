@@ -54,7 +54,7 @@
     "bootstrap": "4.0.0-beta.2",
     "core-js": "2.5.1",
     "jquery": "3.2.1",
-    "moment": "2.18.1",
+    "moment": "2.19.3",
     "ng-pipes": "0.1.2",
     "ng-recaptcha": "3.0.1",
     "ng2-dnd": "4.2.0",
