@@ -1,0 +1,98 @@
+<website-header></website-header>
+<div class="dashboard products-container mb-5">
+  <div class="container">
+    <div class="row">
+      <div class="col pt-4">
+        <h6><i class="fas fa-th-large"></i> <a [routerLink]="['/dashboard']">Dashboard</a> / Mitglieder</h6>
+      </div>
+    </div>
+    <div class="row mt-5 align-items-center">
+      <div class="col">
+        <h4 class="m-0">Verwalte deine <span class="bold primary" *ngIf="users && !loadingUsers"
+                                 [textContent]="users.length"></span><span *ngIf="loadingUsers"><i
+          class="fas fa-spinner-third fa-spin"></i></span> Mitglieder</h4>
+      </div>
+      <div class="col-auto">
+        <div class="immo-sort-dropdown" dropdown>
+          <button dropdownToggle type="button" class="form-control flat d-flex align-items-center">
+            <span class="mr-auto" [textContent]="jamia.name" *ngIf="jamia"></span>
+            <i class="far fa-angle-down"></i>
+          </button>
+          <ul *dropdownMenu class="dropdown-menu" role="menu">
+            <li role="menuitem" *ngFor="let jamia of jamias">
+              <a class="dropdown-item" (click)="selectJamia(jamia)" [textContent]="jamia.name"></a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="row pt-3 align-items-center">
+      <div class="col-4">
+        <div class="form-group m-0">
+          <input type="text" class="form-control" name="searchuser" id="searchuser"
+                 placeholder="Suche nach Name oder E-Mail-Adresse" [(ngModel)]="searchUser"
+                 (ngModelChange)="onUserSearchChanged($event)"/>
+        </div>
+      </div>
+      <div class="col"></div>
+      <div class="col-auto d-flex align-items-center">
+        <button class="btn primary"><i class="far fa-plus"></i> Mitglied hinzufügen</button>
+      </div>
+    </div>
+    <div class="row mt-4 p-2 table-header">
+      <div class="col-auto mr-3"></div>
+      <div class="col-auto mr-5"></div>
+      <div class="col-3">Name</div>
+      <div class="col-3">Adresse</div>
+      <div class="col-3"></div>
+      <div class="col-2"></div>
+    </div>
+    <div class="row mb-2" *ngFor="let user of users">
+      <div class="col">
+        <div class="row user-item p-2 align-items-center" [ngClass]="{'expanded': user.expand}">
+          <div class="col">
+            <div class="row user-header align-items-center">
+              <div class="col-auto">
+                <div class="d-flex user-expand-handle">
+                  <i class="far fa-chevron-right" (click)="user.expand=!user.expand"></i>
+                </div>
+              </div>
+              <div class="col-auto">
+                <div class="user-image">
+                  <img *ngIf="user.profileImage" [src]="getProfileImage()"/>
+                  <div *ngIf="!user.profileImage">
+                    <i class="fas fa-user-circle fa-3x" aria-hidden="true"></i>
+                  </div>
+                </div>
+              </div>
+              <div class="col-3 pt-2 pb-2">
+                <p [textContent]="user.name"></p>
+                <p class="small" [textContent]="user.email"></p>
+              </div>
+              <div class="col-3 pt-2 pb-2">
+                <p><span [textContent]="user.address.street"></span></p>
+                <p><span [textContent]="user.address.postalCode"></span> <span [textContent]="user.address.city"></span></p>
+              </div>
+              <div class="col-3"></div>
+              <div class="col d-flex justify-content-end">
+                <button class="btn flat" tooltip="Bearbeiten"><i class="fas fa-user-edit"></i></button>
+                <button class="btn flat" tooltip="Löschen"><i class="fas fa-times"></i></button>
+              </div>
+            </div>
+            <div class="row user-body">
+              <div class="col-auto mr-3"></div>
+              <div class="col">
+                <h2><span [textContent]="user.donation | number : '1.2-2'"></span> €</h2>
+                <p>Spende</p>
+              </div>
+              <div class="col">
+
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<website-footer></website-footer>

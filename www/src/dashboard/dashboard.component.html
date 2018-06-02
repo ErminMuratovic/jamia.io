@@ -1,0 +1,83 @@
+<website-header></website-header>
+<div class="dashboard pb-5">
+  <div class="container">
+    <div class="row">
+      <div class="col pt-4">
+        <h6>
+          <i class="fas fa-th-large"></i> Dashboard</h6>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-lg-4 col-md-6 d-flex" *ngIf="user">
+        <div class="widget align-content-stretch">
+          <div class="images">
+            <div class="user-image d-flex align-items-center">
+              <img *ngIf="user.profileImage" [src]="getProfileImage()"/>
+              <div *ngIf="!user.profileImage">
+                <i class="fas fa-user-circle" aria-hidden="true" style="font-size: 8em;"></i>
+              </div>
+            </div>
+            <div class="organization-image-small" *ngIf="user.organization">
+              <img *ngIf="user.organization.logo" [src]="getOrganizationLogo()"/>
+            </div>
+          </div>
+          <h5 class="bold">Esselamu alejkum <span [textContent]="user.name"></span>!</h5>
+          <p class="small">Hier im Dashbaord hast du eine Übersicht über dein Dzemat.</p>
+          <div class="row">
+            <div class="col-12">
+              <button class="btn primary align-content-stretch" [routerLink]="['/dashboard/user']">
+                <i class="fas fa-user"></i> Profil bearbeiten
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-4 col-md-6 d-flex" *ngIf="jamia">
+        <div class="widget align-content-stretch">
+          <div class="stretch d-flex align-items-center">
+            <div class="flex-1">
+              <h5 class="bold mb-0">Mein Dzemat</h5>
+            </div>
+            <div class="immo-sort-dropdown" dropdown>
+              <button dropdownToggle type="button" class="form-control flat d-flex align-items-center">
+                <span class="mr-auto" [textContent]="jamia.name" *ngIf="jamia"></span>
+                <i class="far fa-angle-down"></i>
+              </button>
+              <ul *dropdownMenu class="dropdown-menu" role="menu">
+                <li role="menuitem" *ngFor="let jamia of jamias">
+                  <a class="dropdown-item" (click)="selectJamia(jamia)" [textContent]="jamia.name"></a>
+                </li>
+              </ul>
+            </div>
+          </div>
+          <div class="stretch">
+            <p class="small mt-4">Hier kannst du deine Mitglieder, Finanzen und vieles mehr verwalten</p>
+            <ul class="list-group mt-3">
+              <li class="list-group-item link d-flex flex-column align-items-stretch" [routerLink]="['/dashboard/members']">
+                <p class="d-flex justify-content-between align-items-center">
+                  <span><i class="fal fa-users fa-lg mr-2"></i> Mitglieder</span>
+                  <span class="badge badge-primary" *ngIf="users" [textContent]="users.length"></span>
+                </p>
+              </li>
+              <li class="list-group-item link d-flex flex-column align-items-stretch" [routerLink]="['/dashboard/accounting']">
+                <p class="d-flex justify-content-between align-items-center">
+                  <span><i class="fal fa-money-check-alt fa-lg mr-2"></i> Buchhaltung</span>
+                  <span *ngIf="finance > 0" class="badge badge-light"><span [textContent]="finance | number : '1.2-2'"></span> €</span>
+                  <span *ngIf="finance < 0" class="badge badge-danger"><span [textContent]="finance | number : '1.2-2'"></span> €</span>
+                </p>
+              </li>
+            </ul>
+            <button class="btn btn-secondary align-content-stretch" [routerLink]="['/dashboard/jamia']">
+              <i class="fas fa-users"></i> Dzemat bearbeiten
+            </button>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-4 col-md-6 d-flex">
+        <div class="widget align-content-stretch products-widget">
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<website-footer></website-footer>

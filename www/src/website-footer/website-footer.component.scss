@@ -1,0 +1,17 @@
+@import "../variables";
+
+img.logo {
+  height: 60px;
+}
+
+.btn {
+  padding: 5px;
+}
+.btn:hover {
+  .fa-facebook-f {
+    color: #3b5998;
+  }
+  .fa-twitter {
+    color: #55acee;
+  }
+}

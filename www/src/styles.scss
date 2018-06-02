@@ -1,0 +1,513 @@
+@import "./variables";
+@import "../node_modules/bootstrap/scss/bootstrap";
+@import "../node_modules/bootstrap/scss/bootstrap-grid";
+@import url(https://fonts.googleapis.com/css?family=Dancing+Script|Open+Sans|Montserrat:400italic,600italic,100,300,400,500,600);
+@import "../node_modules/ngx-bootstrap/datepicker/bs-datepicker";
+
+$fa-font-path: "./_assets/fontawesome-pro-5.0.13/webfonts";
+
+/* bootstrap override */
+.container {
+  position: relative;
+}
+.btn-outline-secondary {
+  @include hover {
+    color: $backgroundColorDark;
+  }
+}
+div[dropdown] {
+  position: relative;
+}
+.dropdown-menu {
+  border: none;
+  border-radius: 0px;
+  box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
+
+  a {
+    color: $websiteHeaderColor;
+  }
+  a.primary {
+    color: $websiteHeaderPrimaryColor;
+  }
+  a.secondary {
+    color: $websiteHeaderSecondaryColor;
+  }
+  a:hover {
+    color: $black;
+  }
+}
+.dropdown-item,
+.dropdown-item * {
+  cursor: pointer;
+}
+
+nav.navbar .navbar-nav .nav-link {
+  padding-left: 0px;
+}
+
+.btn-secondary {
+  border: 1px solid $backgroundColor;
+}
+
+.form-group {
+  position: relative;
+}
+
+.form-group.is-invalid .invalid-feedback {
+  display: block;
+}
+
+bs-datepicker-container {
+  z-index: 1090;
+}
+
+.modal-header {
+  justify-content: center;
+  background: #e9e9e9;
+  border-bottom: 1px solid #d3d3d3;
+}
+
+/* elyfant defaults */
+
+body {
+  background: #fdfdfd;
+  font-family: $open-sans;
+}
+
+body website { display: block; }
+
+body {
+  animation: fadeIn .5s ease .25s;
+  animation-fill-mode: both;
+}
+
+:focus {
+  outline: 0 !important;
+}
+
+input, button, select, textarea {
+  line-height: inherit;
+  font-size: inherit;
+  font-family: inherit;
+}
+
+p, a {
+  margin: 0;
+  line-height: 1.5em;
+}
+
+p.small {
+  font-size: .9em;
+  color: #696969;
+}
+
+h1,h2,h3,h4,h5,h6 {
+  font-weight: 400;
+}
+
+form label {
+  text-align: right;
+}
+
+p a,
+a p,
+p button,
+button p,
+a .badge {
+  font-size: 1em;
+}
+
+p.bold, a.bold, button.bold, span.bold, label.bold,
+h1.bold, h2.bold, h3.bold, h4.bold, h5.bold, h6.bold {
+  font-weight: 500;
+}
+p.bold2, a.bold2, button.bold2, span.bold2, label.bold2
+h1.bold2, h2.bold2, h3.bold2, h4.bold2, h5.bold2, h6.bold2 {
+  font-weight: 600;
+}
+
+a {
+  color: $primaryColor;
+}
+
+a {
+  transition: all .4s ease-in-out;
+}
+
+a:hover, a:focus {
+  text-decoration: none;
+  color: $primaryColor;
+}
+
+a.primary,
+p.primary,
+span.primary,
+h1.primary,
+h2.primary,
+h3.primary,
+span.primary {
+  color: $primaryColor;
+}
+
+a.primary:hover {
+  color: $primaryColorDark;
+}
+
+a.secondary {
+  color: $secondaryColor;
+}
+
+a.secondary:hover {
+  color: $secondaryColorDark;
+}
+
+a.success {
+  color: $highlightColor;
+}
+
+a.success:hover {
+  color: $highlightColorDark;
+}
+
+button {
+  border: none;
+  cursor: pointer;
+  padding: 5px 20px;
+  background-color: $white;
+  transition: box-shadow .4s ease;
+}
+
+button:not(.flat) {
+  @include touch-hover() {
+    box-shadow: $materialShadow1;
+  }
+}
+
+button.stretch {
+  width: 100%;
+}
+
+button.primary {
+  color: $white;
+  background-color: $primaryColor;
+}
+
+button.secondary {
+  color: $white;
+  background-color: $secondaryColor;
+}
+
+button.success {
+  color: $white;
+  background-color: $highlightColor;
+}
+
+button .fa-redo { display: none; }
+button.loading .fa-redo { display: inline-block; }
+
+video.cover, img.cover {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.shadow, .shadow * {
+  text-shadow: 0px 0px 4px #000;
+}
+
+.shake {
+  animation: shake 0.82s cubic-bezier(.36,.07,.19,.97) both;
+}
+
+.blink {
+  animation: blinking 1s linear infinite;
+}
+
+.flex-1 {
+  flex: 1;
+}
+
+.hero {
+  width: 100%;
+  height: auto;
+  min-height: 70vh;
+  position: relative;
+
+  .filter, .video {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+  }
+  .filter {
+    z-index: 9;
+    opacity: 0;
+    background: $black;
+  }
+  .video {
+    z-index: 8;
+  }
+
+  .search-box {
+    z-index: 14;
+    flex-grow: 1;
+    padding: 20px 0px;
+    color: $white;
+
+    .slogan h2 {
+      white-space: nowrap;
+      display: inline-block;
+      position: relative;
+      font-size: 3em;
+      margin-top: 5vh;
+      font-family: $dancing-script;
+    }
+
+    .slogan h2:before {
+      content: '';
+      position: absolute;
+      display: block;
+      width: 100%;
+      height: 15px;
+      border-radius: 50%;
+      bottom: -20px;
+      background: transparent;
+      background: linear-gradient(to right bottom, white 20%, transparent 25%);
+    }
+
+    .slogan h2 {
+      animation: fadeIn 1s ease 1s;
+      animation-fill-mode: both;
+    }
+    .angle-down {
+      animation: fadeIn .5s ease 3s;
+      animation-fill-mode: both;
+    }
+
+    .search {
+      flex-grow: 1;
+      margin: 20px 10px;
+      max-width: 100%;
+      z-index: 290;
+
+      .ely-country-selector {
+        z-index: 290;
+        margin-top: -2px;
+
+        button {
+          color: #fff;
+        }
+      }
+    }
+    .search {
+      animation: slideIn 1s ease 2s;
+      animation-fill-mode: both;
+    }
+
+    .search h1 {
+      font-weight: bold;
+      font-size: 6em;
+    }
+
+    .links {
+      list-style: none;
+      display: flex;
+      padding: 0px;
+      margin: 20px 0px 1px 0px;
+      max-width: 100vw;
+      overflow-x: auto;
+
+      button {
+        color: #ddd;
+        margin: 0px 1px 0px 0px;
+        padding: 7px 30px;
+        display: flex;
+        align-items: center;
+        background-color: rgba(0, 0, 0, .5);
+        border-bottom: 3px solid rgba(0, 0, 0, .5);
+        white-space: nowrap;
+
+        i {
+          margin-left: 4px;
+        }
+        .fa-angle-down {
+          opacity: 0;
+          margin: 5px;
+        }
+      }
+
+      button:hover {
+        color: $white;
+        border-bottom: 3px solid rgba(147, 183, 6, .5);
+      }
+
+      button.active {
+        color: $white;
+        border-bottom: 3px solid #93b706;
+        .fa-angle-down {
+          opacity: 1;
+        }
+      }
+    }
+
+    .searchinput {
+      display: flex;
+
+      input {
+        padding: 5px 20px;
+        width: 65vw;
+        max-width: 600px;
+        background-color: rgba(255, 255, 255, .7);
+        border: none;
+        color: $black;
+      }
+
+      input:focus {
+        background-color: rgba(255, 255, 255, .8);
+        outline: none;
+      }
+      input {
+        @include placeholder {
+          color: #333;
+        }
+      }
+
+      .btnSearch {
+        color: $white;
+        padding: 10px 20px;
+        background-color: #93b706;
+        margin-left: 1px;
+
+        .fa-search {
+          margin-right: 10px;
+          font-size: 1.1em;
+        }
+      }
+    }
+
+    .locationPhotos {
+      h5 {
+        margin: 20px 10px 0px 10px;
+        font-size: 1em;
+      }
+      img {
+        margin: 10px;
+        max-height: 180px;
+      }
+      .attribution {
+        position: absolute;
+        bottom: 10px;
+        left: 30px;
+
+        a {
+          color: #fff;
+          text-shadow: 0px 0px 4px #000;
+        }
+        a:hover {
+          text-decoration: underline;
+        }
+      }
+    }
+
+    .angle-down {
+      color: $white;
+      border: 2px solid $white;
+      padding: 5px 12px;
+      border-radius: 50%;
+      margin: 20px 0px 0px 0px;
+      box-shadow: 0px 0px 4px #000;
+    }
+
+    .angle-down:hover {
+      background: rgba(255, 255, 255, .1);
+    }
+  }
+
+  .video-container {
+    width: 100%;
+    height: 100%;
+    top: 0;
+    overflow: hidden;
+    position: absolute;
+    border-bottom: 1px solid $black;
+    border-top: 1px solid $black;
+
+    .attribution {
+      position: absolute;
+      z-index: 14;
+      bottom: 0px;
+      left: 10px;
+      color: #ddd;
+      font-size: .7em;
+
+      a {
+        color: #ddd;
+      }
+      a:hover {
+        text-decoration: underline;
+      }
+    }
+  }
+}
+
+.produkt-banner {
+  padding: 20px 0;
+  h2 {
+    color: $primaryColor;
+    font-size: 1.2em;
+    margin: 10px 0;
+  }
+}
+
+footer {
+  color: #a9a9a9;
+  padding: 20px 0px 50px 0px;
+
+  .row > div {
+    margin: 30px 0px 0px 0px;
+  }
+
+  a {
+    color: #505050;
+    font-size: 1em;
+  }
+
+  p.link {
+    margin: 5px 0px;
+    font-size: 1em;
+  }
+
+  .title {
+    color: #a9a9a9;
+    font-size: 1.1em;
+  }
+}
+
+.badge-default {
+  color: $backgroundColorDark !important;
+}
+
+.cursor-pointer:hover {
+  cursor: pointer;
+}
+
+.nav {
+  overflow-x: auto;
+  overflow-y: hidden;
+  white-space: nowrap;
+}
+
+.dropdown-menu {
+  button {
+    width: 100%;
+  }
+  button:hover {
+    background: $backgroundColorLight;
+  }
+  button.active {
+    color: $white;
+    background: $primaryColor;
+  }
+  button.active:hover {
+    background: $primaryColorLight;
+  }
+}

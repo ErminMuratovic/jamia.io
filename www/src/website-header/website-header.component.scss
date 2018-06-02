@@ -1,0 +1,211 @@
+@import "../variables";
+@import "../../node_modules/bootstrap/scss/mixins/_breakpoints";
+
+@include media-breakpoint-down(sm) {
+  nav {
+    .navbar-brand {
+      padding: .25rem 0px;
+    }
+  }
+}
+
+@include media-breakpoint-down(md) {
+  nav > .container {
+    width: 100%;
+  }
+}
+
+.navbar-brand {
+  height: 65px;
+  padding: .25rem;
+  color: $websiteHeaderColor;
+
+  img {
+    height: 56px;
+  }
+  p {
+    margin: 0px 10px;
+  }
+}
+
+.my-elyfant-container {
+  top: 0px;
+  right: 0px;
+  z-index: 20;
+  padding: 10px;
+  position: absolute;
+  border: 1px solid transparent;
+  transition: border .75s .5s ease, box-shadow .75s .25s ease, background 2s ease;
+
+  .my-elyfant-btn {
+    padding: 0px 15px;
+    background: transparent;
+
+    .user-icon {
+      background: #eee;
+      padding: 10px 14px;
+      border-radius: 26px;
+      border: 1px solid #ccc;
+      color: $secondaryColor;
+    }
+
+    h5, p {
+      margin: 0px 10px;
+      text-align: left;
+      letter-spacing: 1px;
+    }
+    h5 {
+      font-size: .9em;
+    }
+    p {
+      font-size: .8em;
+    }
+
+    .logged-in {
+      min-width: 150px;
+      margin-top: -15px;
+      position: relative;
+
+      p {
+        overflow: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+        max-width: 95%;
+        position: absolute;
+      }
+    }
+  }
+
+  @include media-breakpoint-down(sm) {
+    .my-elyfant-menu {
+      max-width: 1px;
+    }
+    .my-elyfant-btn {
+      .label {
+        margin: 0px 3px;
+        max-width: 0px;
+        transition: margin .5s ease, max-width 1s ease, min-width 1s ease;
+        p, h5 { overflow: hidden; }
+      }
+      .label.logged-in {
+        min-width: 0px;
+        margin: 6px 3px;
+      }
+    }
+  }
+
+  .my-elyfant-menu {
+    opacity: 0;
+    max-height: 0px;
+    overflow: hidden;
+    padding: 0px 10px;
+    transition: margin .5s ease, padding .5s ease, max-height .5s ease, opacity .4s ease, max-width 1s ease;
+  }
+
+  .my-elyfant-menu.logged-in {
+    padding: 0px;
+
+    button.flat {
+      text-align: left;
+      background-color: transparent;
+      color: $black;
+      padding: 10px;
+    }
+    button.flat:not(:last-child) {
+      border-bottom: 1px solid #ccc;
+    }
+    button.flat:last-child {
+      padding: 10px 10px 0px 10px
+    }
+    button.flat:hover {
+      font-weight: 500;
+    }
+    button.flat.primary {
+      color: $primaryColor;
+    }
+    button.flat.secondary {
+      color: $secondaryColor;
+    }
+  }
+}
+
+.my-elyfant-container:hover {
+  background: $white;
+  border: 1px solid #ccc;
+  box-shadow: 0 14px 28px rgba(0, 0, 0, .25), 0 10px 10px rgba(0, 0, 0, .22);
+  transition: border 1s ease, box-shadow .4s ease, background 1s ease;
+}
+.my-elyfant-container.active {
+  background: $white;
+  border: 1px solid #ccc;
+  transition: border 1s ease, box-shadow .4s ease, background 1s ease;
+
+  @include media-breakpoint-down(sm) {
+    .my-elyfant-menu {
+      max-width: 400px;
+    }
+    .my-elyfant-btn {
+      .label {
+        margin: 0px 10px;
+        max-width: 400px;
+      }
+      .label.logged-in {
+        margin: 6px 10px;
+        min-width: 100px;
+      }
+    }
+  }
+
+  .my-elyfant-menu {
+    opacity: 1;
+    padding: 10px;
+    margin-top: 20px;
+    max-height: 1000px;
+    border-top: 1px solid #ccc;
+    transition: margin .5s ease, padding .5s ease, max-height 3s ease, opacity .5s ease, max-width 1s ease;
+  }
+  .my-elyfant-menu.logged-in {
+    padding: 0px;
+  }
+}
+
+nav#navbar-menu-container {
+  font-size: 1.2em;
+  padding: .2rem 1rem;
+  color: $backgroundColorLight;
+
+  li a {
+    color: $websiteHeaderColor;
+  }
+  li a.primary {
+    color: $websiteHeaderPrimaryColor;
+  }
+  li a.secondary {
+    color: $websiteHeaderSecondaryColor;
+  }
+  li a:hover {
+    color: $black;
+  }
+
+  .navbar-toggler {
+    border: none;
+    box-shadow: none;
+    padding: 0px;
+    margin: 10px 0px;
+    outline-color: transparent;
+  }
+  .navbar-toggler .icon-bar {
+    height: 2px;
+    width: 22px;
+    margin-top: 4px;
+    display: block;
+    position: relative;
+    background: $black;
+  }
+  .collapse.in {
+    display: block;
+  }
+  .nav-item {
+    margin-right: 16px;
+  }
+}

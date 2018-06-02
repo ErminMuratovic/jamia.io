@@ -1,0 +1,332 @@
+@import "../../variables";
+
+.user-item {
+  background: #d6d6d6;
+}
+
+.user-item:hover {
+  box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
+}
+
+/deep/ .btn-multiline {
+  white-space: normal !important;
+}
+
+.dashboard {
+  .list-group {
+    margin-top: 20px;
+
+    .list-group-item {
+      padding: 4px 0px;
+      border: none;
+      border-radius: 0px;
+      border-top: 1px solid #eee;
+      border-bottom: 1px solid #eee;
+
+      .badge {
+        font-size: 1em;
+        font-weight: normal;
+        margin: 6px 0px;
+      }
+    }
+    .list-group-item.link {
+      cursor: pointer;
+    }
+  }
+
+  .dashboard-tabs {
+    .dashboard-container {
+      background-color: $backgroundColorLight;
+
+      .dashboard-submenu {
+        border-bottom: 1px solid $backgroundColor;
+        padding-bottom: 10px;
+        margin-bottom: 10px;
+        a {
+          color: #000;
+          padding: 0 20px;
+          border-right: 1px solid $backgroundColor;
+          &:first-child {
+            padding-left: 0;
+          }
+          &:last-child {
+            border-right: none;
+          }
+          &.active {
+            font-weight: bold;
+          }
+          .badge {
+            font-weight: 400;
+            font-size: 0.9em;
+            line-height: 120%;
+          }
+        }
+      }
+    }
+
+    .tab-pane .container {
+      padding: 20px;
+    }
+
+    /deep/ .nav-tabs {
+      margin-left: auto;
+      margin-right: auto;
+
+      margin-top: 20px;
+      border: none;
+
+      .nav-item.disabled {
+        opacity: .5;
+      }
+
+      .nav-link,
+      .nav-link.active {
+        border: none;
+        color: $black;
+        font-size: 0.95em;
+      }
+      .nav-link.active {
+        background-color: $backgroundColorLight;
+      }
+    }
+
+    @media (min-width: 576px) {
+      /deep/ .nav-tabs {
+        width: 540px;
+        max-width: 100%;
+      }
+    }
+
+    @media (min-width: 768px) {
+      /deep/ .nav-tabs {
+        width: 720px;
+        max-width: 100%;
+      }
+    }
+
+    @media (min-width: 992px) {
+      /deep/ .nav-tabs {
+        width: 960px;
+        max-width: 100%;
+      }
+    }
+
+    @media (min-width: 1200px) {
+      /deep/ .nav-tabs {
+        width: 1140px;
+        max-width: 100%;
+      }
+    }
+
+    @media (min-width: 1400px) {
+      /deep/ .nav-tabs {
+        width: 1320px;
+        max-width: 100%;
+      }
+    }
+  }
+}
+
+.subscription {
+  h2 {
+    font-size: 2em;
+  }
+  p {
+    margin-top: -10px;
+    margin-left: 2px;
+  }
+  .basic-subscription {
+    color: #6a6a6a;
+  }
+  .advanced-subscription {
+    color: #93b706;
+  }
+  .business-subscription {
+    color: #0099cc;
+  }
+}
+
+.widget {
+  width: 100%;
+  background-color: $white;
+  padding: 20px;
+  margin: 20px 0px;
+  border-radius: 4px;
+  border: 1px solid #eee;
+  color: #444;
+  overflow: hidden;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+
+  .btn {
+    font-size: .9em;
+    margin: 10px 0px;
+  }
+
+  svg, i {
+    margin: 10px 0px;
+  }
+  .badge-success {
+    color: #fff;
+  }
+
+  .stretch {
+    align-self: stretch;
+  }
+}
+
+.b2b-banner {
+  margin: -20px -20px 0px -20px;
+
+  .b2b-banner-img {
+    height: 150px;
+  }
+  label {
+    margin: 0px;
+    padding: 8px;
+    text-align: center;
+    background: rgba(0, 0, 0, .4);
+  }
+  label a {
+    color: $white;
+  }
+}
+
+.changeProfileImageButton:hover {
+  cursor: pointer;
+  color: $primaryColorDark;
+}
+
+.images {
+  position: relative;
+  margin-bottom: 10px;
+
+  .user-image {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    position: relative;
+    overflow: hidden;
+  }
+  .organization-image {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    position: absolute;
+    overflow: hidden;
+    bottom: -10px;
+    right: -10px;
+  }
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+}
+
+.user-icon {
+  svg, i {
+    font-size: 4em;
+  }
+}
+
+.pricing {
+  .price-model {
+    &.basic {
+      button.btn {
+        color: $white;
+        background-color: $backgroundColor;
+      }
+    }
+    &.advanced {
+      h2 {
+        color: $highlightColor;
+      }
+      button.btn {
+        color: $white;
+        background-color: $highlightColor;
+      }
+    }
+    &.business {
+      h2 {
+        color: $primaryColor;
+      }
+      button.btn {
+        color: $white;
+        background-color: $primaryColor;
+      }
+    }
+
+    button.btn {
+      width: 100%;
+      i, svg {
+        margin-left: 10px;
+      }
+    }
+
+    .price-model-header {
+      background: #4a4a4a;
+      padding: 20px 40px;
+      color: $white;
+      text-shadow: 0px 0px 3px #000;
+
+      h2 {
+        text-transform: uppercase;
+        font-weight: bold;
+        font-size: 2em;
+      }
+      p.price {
+        font-size: 1.2em;
+
+        .small {
+          font-size: .6em;
+        }
+      }
+      p.description {
+        padding: 0px 30px;
+      }
+    }
+
+    .price-model-detail {
+      background: #fff;
+      padding: 30px 20px 20px 20px;
+      border: 1px solid #e9e9e9;
+
+      & > div {
+        border-bottom: 1px solid #e9e9e9;
+        padding: 2px 5px;
+      }
+      & > div:last-child {
+        border-bottom: none;
+      }
+
+      i, svg {
+        margin-right: 20px;
+      }
+      ul {
+        list-style: none;
+        font-weight: 100;
+        font-size: .9em;
+      }
+      .basic-feature {
+        i, svg {
+          color: $backgroundColor;
+        }
+      }
+      .advanced-feature {
+        i, svg {
+          color: $highlightColor;
+        }
+      }
+      .business-feature {
+        i, svg {
+          color: $primaryColor;
+        }
+      }
+    }
+  }
+}

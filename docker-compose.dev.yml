@@ -1,0 +1,69 @@
+version: "2.1"
+services:
+  api:
+    build: ./api/
+    container_name: jamia_api
+    restart: always
+    mem_limit: 1GB
+    networks:
+      - docker_net
+    ports:
+      - "5000:5000"
+    links:
+      - mongodb
+    depends_on:
+      - mongodb
+    environment:
+      - API_PORT=5000
+      - MONGODB_USER
+      - MONGODB_PASS
+
+  website:
+    build: ./www/
+    container_name: jamia_website
+    restart: always
+    mem_limit: 1GB
+    networks:
+      - docker_net
+    ports:
+      - "80:80"
+    volumes:
+      - ./www/dist:/usr/share/nginx/html
+
+  mongodb:
+    image: mongo
+    container_name: mongodb
+    restart: always
+    mem_limit: 2GB
+    networks:
+      - docker_net
+    environment:
+      - MONGODB_USER
+      - MONGODB_PASS
+
+  redisstore:
+    image: redis
+    container_name: redisstore
+    restart: always
+    mem_limit: 2GB
+    networks:
+      - docker_net
+
+  mongodbadmin:
+    image: mongo-express
+    container_name: mongodbadmin
+    restart: always
+    cpu_shares: 10
+    mem_limit: 524288000
+    ports:
+      - "8081:8081"
+    networks:
+      - docker_net
+    links:
+      - mongodb:mongo
+    depends_on:
+      - mongodb
+
+networks:
+  docker_net:
+    driver: bridge

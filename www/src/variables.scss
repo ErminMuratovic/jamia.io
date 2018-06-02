@@ -1,0 +1,101 @@
+$dancing-script: "Dancing Script", cursive;
+$open-sans: "Montserrat", "Open Sans", "Lora", "Helvetica Neue", Helvetica, Arial, sans-serif;
+
+$white: #fff;
+$black: #000;
+$textColor: #3c1516;
+$primaryColor: #48bcca;
+$secondaryColor: #f7b218;
+$highlightColor: #e83b54;
+$backgroundColor: #ebd3b4;
+
+$primaryColorLight: #44bce3;
+$primaryColorDark: #157493;
+$secondaryColorLight: #f46b4f;
+$secondaryColorDark: #cd2e0c;
+$highlightColorLight: #c6f507;
+$highlightColorDark: #637a03;
+$backgroundColorLight: #f4f4f4;
+$backgroundColorDark: #6a6a6a;
+
+$websiteHeaderColor: #505050;
+$websiteHeaderHoverColor: $black;
+$websiteHeaderPrimaryColor: $primaryColor;
+$websiteHeaderSecondaryColor: $secondaryColor;
+
+$materialShadow1: 0 8px 17px 0 rgba(0, 0, 0, .3), 0 6px 3px 0 rgba(0, 0, 0, .19);
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+@keyframes slideIn {
+  from { flex-grow: 0; height: 0px; opacity: 0; }
+  to { flex-grow: 1; height: auto; opacity: 1; }
+}
+
+@keyframes shake {
+  10%, 90% { transform: translate3d(-1px, 0, 0); }
+  20%, 80% { transform: translate3d(2px, 0, 0); }
+  30%, 50%, 70% { transform: translate3d(-4px, 0, 0); }
+  40%, 60% { transform: translate3d(4px, 0, 0); }
+}
+
+@keyframes blinking {
+  50% { opacity: 0; }
+}
+
+
+@mixin placeholder {
+  &::-webkit-input-placeholder {@content}
+  &:-moz-placeholder           {@content}
+  &::-moz-placeholder          {@content}
+  &:-ms-input-placeholder      {@content}
+}
+
+@mixin touch-hover() {
+  .no-js &:hover,
+  .no-js &:focus,
+  .js.no-touch &:hover,
+  .js.no-touch &:focus,
+  .js.touch &:active {
+    @content;
+  }
+  @include media-breakpoint-up(lg) {
+    .js.touch &:hover {
+      @content;
+    }
+  }
+}
+
+/* bootstrap */
+$enable-flex: true;
+$enable-gradients: true;
+$brand-primary: $primaryColor;
+$btn-secondary-border: $white;
+$badge-default-bg: $backgroundColorLight;
+$grid-breakpoints: (
+        xs: 0,
+        sm: 576px,
+        md: 768px,
+        lg: 992px,
+        xl: 1200px,
+        xxl: 1400px
+) !default;
+$container-max-widths: (
+        sm: 540px,
+        md: 720px,
+        lg: 960px,
+        xl: 1140px,
+        xxl: 1320px
+) !default;
+
+$primary:       $primaryColor;
+//$secondary:     $secondaryColor;
+$success:       $highlightColor;
+$info:          $primaryColorLight;
+$warning:       $secondaryColorLight;
+$danger:        $secondaryColorDark;
+$light:         $backgroundColorLight;
+$dark:          $backgroundColorDark;

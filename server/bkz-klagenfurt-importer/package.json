@@ -1,0 +1,16 @@
+{
+  "name": "bkz-klagenfurt-importer",
+  "version": "1.0.0",
+  "description": "",
+  "main": "bkz-klagenfurt-importer.js",
+  "scripts": {
+    "start": "node bkz-klagenfurt-importer.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "exceljs": "^1.1.0",
+    "mongodb": "^3.0.5"
+  }
+}
