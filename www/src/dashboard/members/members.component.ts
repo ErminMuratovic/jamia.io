@@ -20,7 +20,9 @@ export class MembersComponent implements OnInit {
   public users;
 
   public loadingUsers = false;
-  public searchUser;
+  public memberSearch = {
+    name: ""
+  };
 
   constructor(private authService: AuthService, private jamiaService: JamiaService, private financeService: FinanceService) {
   }
@@ -68,7 +70,7 @@ export class MembersComponent implements OnInit {
     this.loadUsers();
   }
 
-  onUserSearchChanged(userSearch) {
+  onMemberSearchChanged(userSearch) {
 
   }
 

@@ -8,9 +8,31 @@
     </div>
     <div class="row mt-5 align-items-center">
       <div class="col">
-        <h4 class="m-0">Verwalte deine <span class="bold primary" *ngIf="users && !loadingUsers"
-                                 [textContent]="users.length"></span><span *ngIf="loadingUsers"><i
-          class="fas fa-spinner-third fa-spin"></i></span> Mitglieder</h4>
+        <h4>Verwalte deine Mitglieder hier</h4>
+      </div>
+    </div>
+    <div class="row align-items-center">
+      <div class="col">
+        <div class="row">
+          <div class="col-auto pr-0">
+            <div dropdown placement="left">
+              <button dropdownToggle type="button" class="form-control flat">
+                <span *ngIf="memberSearch.pageSize && totalMembers > memberSearch.pageSize" [textContent]="memberSearch.pageSize"></span>
+                <span *ngIf="!memberSearch.pageSize || totalMembers < memberSearch.pageSize" [textContent]="totalMembers"></span>
+                <i class="far fa-angle-down"></i>
+              </button>
+              <ul *dropdownMenu class="dropdown-menu" role="menu">
+                <li role="menuitem" *ngIf="totalMembers > 20"><a class="dropdown-item" (click)="changePageSizeMembers(20)">20</a></li>
+                <li role="menuitem" *ngIf="totalMembers > 50"><a class="dropdown-item" (click)="changePageSizeMembers(50)">50</a></li>
+                <li role="menuitem" *ngIf="totalMembers > 100"><a class="dropdown-item" (click)="changePageSizeMembers(100)">100</a></li>
+                <li role="menuitem"><a class="dropdown-item" (click)="changePageSizeMembers()">Alle</a></li>
+              </ul>
+            </div>
+          </div>
+          <div class="col-auto">
+            <p class="mt-2">von <span class="bold primary" *ngIf="users && !loadingUsers" [textContent]="users.length"></span><span *ngIf="loadingUsers"><i class="fas fa-spinner-third fa-spin"></i></span> Mitglieder</p>
+          </div>
+        </div>
       </div>
       <div class="col-auto">
         <div class="immo-sort-dropdown" dropdown>
@@ -30,8 +52,8 @@
       <div class="col-4">
         <div class="form-group m-0">
           <input type="text" class="form-control" name="searchuser" id="searchuser"
-                 placeholder="Suche nach Name oder E-Mail-Adresse" [(ngModel)]="searchUser"
-                 (ngModelChange)="onUserSearchChanged($event)"/>
+                 placeholder="Suche nach Name oder E-Mail-Adresse" [(ngModel)]="memberSearch.name"
+                 (ngModelChange)="onMemberSearchChanged($event)"/>
         </div>
       </div>
       <div class="col"></div>

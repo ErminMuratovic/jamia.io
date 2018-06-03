@@ -46,6 +46,7 @@ FinanceRouter.get("/transaction", isLoggedIn, function (req: express.Request, re
     else if(req.query["maxamount"])
         query.where("amount", { "$lte": moment(req.query["maxamount"]).toDate() });
 
+    query.sort('date');
     query.populate("jamia");
     query.populate("user");
     query.populate("transactionType");

@@ -3,32 +3,59 @@
   <div class="container">
     <div class="row">
       <div class="col pt-4">
-        <h6><i class="fas fa-th-large"></i> <a [routerLink]="['/dashboard']">Dashboard</a> / Mitglieder</h6>
+        <h6><i class="fas fa-th-large"></i> <a [routerLink]="['/dashboard']">Dashboard</a> / Buchhaltung</h6>
       </div>
     </div>
-    <div class="row pt-3">
-      <div class="col-6">
-        <p>Verwalte deine Mitglieder hier</p>
+    <div class="row mt-5 align-items-center">
+      <div class="col">
+        <h4 class="m-0">Verwalte deine Finanzen hier</h4>
       </div>
-      <div class="col-6 d-flex align-items-center">
-        <button class="btn primary"><i class="far fa-plus"></i> Mitglied hinzufügen</button>
+      <div class="col-auto">
+        <div class="immo-sort-dropdown" dropdown>
+          <button dropdownToggle type="button" class="form-control flat d-flex align-items-center">
+            <span class="mr-auto" [textContent]="jamia.name" *ngIf="jamia"></span>
+            <i class="far fa-angle-down"></i>
+          </button>
+          <ul *dropdownMenu class="dropdown-menu" role="menu">
+            <li role="menuitem" *ngFor="let jamia of jamias">
+              <a class="dropdown-item" (click)="selectJamia(jamia)" [textContent]="jamia.name"></a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="row pt-3 align-items-center">
+      <div class="col-4">
+        <div class="form-group m-0">
+          <input type="text" class="form-control" name="searchaccounting" id="searchaccounting"
+                 placeholder="Suche nach Buchung" [(ngModel)]="searchTransactions"
+                 (ngModelChange)="onTransactionsNameChanged($event)"/>
+        </div>
+      </div>
+      <div class="col"></div>
+      <div class="col-auto d-flex align-items-center">
+        <button class="btn primary"><i class="far fa-plus"></i> Buchung hinzufügen</button>
       </div>
     </div>
     <div class="row mt-4 p-2">
-      <div class="col-3">Beschreibung</div>
+      <div class="col-3">Name</div>
+      <div class="col-6">Beschreibung</div>
+      <div class="col-1">Datum</div>
       <div class="col-2">Betrag</div>
-      <div class="col-3"></div>
-      <div class="col-3"></div>
     </div>
     <div class="row user-item p-2 mb-2" *ngFor="let transaction of transactions">
       <div class="col-3">
+        <p [textContent]="transaction.user.name"></p>
+      </div>
+      <div class="col-6">
         <p [textContent]="transaction.title"></p>
+      </div>
+      <div class="col-1">
+        <p [textContent]="formatDate(transaction.date)"></p>
       </div>
       <div class="col-2">
         <p><span [textContent]="transaction.amount | number : '1.2-2'"></span> €</p>
       </div>
-      <div class="col-3"></div>
-      <div class="col-3"></div>
     </div>
   </div>
 </div>

@@ -21,6 +21,9 @@ export class AccountingComponent implements OnInit {
   public jamia;
   public transactions;
 
+  public loadingTransactions = false;
+  public searchTransactions;
+
   public results = {
     incoming: 0,
     outgoing: 0,
