@@ -1,4 +1,4 @@
 export const environment = {
   production: true,
-  apiUrl: "api.dzemat.at"
+  apiUrl: "http://api.dzemat.at"
 };
