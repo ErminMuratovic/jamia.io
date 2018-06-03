@@ -61,13 +61,11 @@ services:
       - mongodb
     depends_on:
       - mongodb
+    ports:
+      - "5000:5000"
     environment:
       - NODE_ENV
-      - API_PORT=5000
-      - MONGODB_USER
-      - MONGODB_PASS
       - VIRTUAL_HOST=${JAMIA_API_HOSTNAME}
-      - VIRTUAL_PORT=5000
       - VIRTUAL_NETWORK=docker_net
       - LETSENCRYPT_HOST=${JAMIA_API_HOSTNAME}
       - LETSENCRYPT_EMAIL=${OFFICE_EMAIL}
@@ -92,9 +90,6 @@ services:
     mem_limit: 2GB
     networks:
       - docker_net
-    environment:
-      - MONGODB_USER
-      - MONGODB_PASS
     volumes:
       - ./server/db/mongodb:/data/db
 
