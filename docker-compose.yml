@@ -105,3 +105,4 @@ services:
 networks:
   docker_net:
     driver: bridge
+    external: true
