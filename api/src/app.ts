@@ -68,6 +68,7 @@ app.use((req, res, next) => {
 app.use("/auth", AuthRouter);
 app.use("/jamia", JamiaRouter);
 app.use("/finance", FinanceRouter);
+app.use("/assets", express.static("public"));
 
 let server = app.listen(port, () => {
     console.log('API listening on http://localhost:%s', server.address().port);
