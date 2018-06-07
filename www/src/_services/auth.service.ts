@@ -18,9 +18,7 @@ class AuthService implements IAuthService {
   private apiUrl = environment.apiUrl + "/auth";
   private httpOptions = new RequestOptions({withCredentials: true});
 
-  constructor(private http: Http, private location: Location) {
-    if(location.port)
-      this.apiUrl = environment.apiUrl + ":" + location.port + "/auth";
+  constructor(private http: Http) {
   }
 
   isLoggedIn() {
