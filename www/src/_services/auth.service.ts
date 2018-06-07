@@ -6,13 +6,9 @@ import 'rxjs/Rx';
 
 interface IAuthService {
   isLoggedIn();
-
   register(user: any);
-
   login(email: string, password: string);
-
   getUserByConfirmationId(confirmationId: string);
-
   logout();
 }
 
@@ -22,7 +18,9 @@ class AuthService implements IAuthService {
   private apiUrl = environment.apiUrl + "/auth";
   private httpOptions = new RequestOptions({withCredentials: true});
 
-  constructor(private http: Http) {
+  constructor(private http: Http, private location: Location) {
+    if(location.port)
+      this.apiUrl = environment.apiUrl + ":" + location.port + "/auth";
   }
 
   isLoggedIn() {
@@ -81,6 +79,10 @@ class AuthService implements IAuthService {
         requestOptions.params.set("jamia", searchParams["jamia"]);
       if (searchParams["name"])
         requestOptions.params.set("name", searchParams["name"]);
+      if (searchParams["pageSize"])
+        requestOptions.params.set("pageSize", searchParams["pageSize"]);
+      if (searchParams["page"])
+        requestOptions.params.set("page", searchParams["page"]);
     }
     return this.http.get(this.apiUrl + "/user", requestOptions).map((response: Response) => response.json());
   }

@@ -33,6 +33,10 @@ class FinanceService implements IFinanceService {
             requestOptions.params.set("mindate", searchParams["mindate"]);
           if(searchParams["maxdate"])
             requestOptions.params.set("maxdate", searchParams["maxdate"]);
+          if (searchParams["pageSize"])
+            requestOptions.params.set("pageSize", searchParams["pageSize"]);
+          if (searchParams["page"])
+            requestOptions.params.set("page", searchParams["page"]);
         }
         return this.http.get(this.apiUrl+"/transaction", requestOptions).map((response: Response) => response.json());
     }

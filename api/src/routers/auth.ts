@@ -60,6 +60,8 @@ AuthRouter.get("/user", isAdmin, function (req: any, res: any) {
         query.regex("name", new RegExp(req.query["name"], "i"));
 
     query.sort('name');
+    query.limit(req.query.pageSize);
+    query.skip(req.query.page);
     query
         .populate("jamia")
         .populate({path: 'transactions'})

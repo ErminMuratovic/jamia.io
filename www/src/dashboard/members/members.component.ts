@@ -18,10 +18,14 @@ export class MembersComponent implements OnInit {
 
   public jamia;
   public users;
+  public totalMembers;
 
   public loadingUsers = false;
   public memberSearch = {
-    name: ""
+    name: "",
+    pageSize: 20,
+    page: 0,
+    jamia: null
   };
 
   constructor(private authService: AuthService, private jamiaService: JamiaService, private financeService: FinanceService) {
@@ -41,37 +45,41 @@ export class MembersComponent implements OnInit {
     this.jamiaService.getJamia({ admin: this.user["_id"] })
       .subscribe(jamias => {
         this.jamias = jamias;
-        this.jamia = jamias[0];
-        this.loadUsers();
+        this.selectJamia(jamias[0]);
       });
   }
 
   loadUsers() {
-    if(this.jamia) {
-      this.loadingUsers = true;
-      this.authService.getUsers({ jamia: this.jamia["_id"] })
-        .subscribe(users => {
-          this.users = users;
-          this.users.forEach(user => {
-            user.donation = user.transactions.reduce((sum, a) => {
-              if (a.amount > 0)
-                return sum + a.amount;
-              else
-                return sum;
-            }, 0);
-          });
-          this.loadingUsers = false;
+    this.users = [];
+    this.getUsersNextPage();
+  }
+
+  getUsersNextPage() {
+    this.loadingUsers = true;
+    this.authService.getUsers(this.memberSearch)
+      .subscribe(result => {
+        this.users = result.users;
+        this.totalMembers = result.total;
+        this.users.forEach(user => {
+          user.donation = user.transactions.reduce((sum, a) => {
+            if (a.amount > 0)
+              return sum + a.amount;
+            else
+              return sum;
+          }, 0);
         });
-    }
+        this.loadingUsers = false;
+      });
   }
 
   selectJamia(jamia) {
     this.jamia = jamia;
+    this.memberSearch.jamia = jamia["_id"];
     this.loadUsers();
   }
 
   onMemberSearchChanged(userSearch) {
-
+    this.loadUsers();
   }
 
 }
