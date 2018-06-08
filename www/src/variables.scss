@@ -73,7 +73,6 @@ $materialShadow1: 0 8px 17px 0 rgba(0, 0, 0, .3), 0 6px 3px 0 rgba(0, 0, 0, .19)
 $enable-flex: true;
 $enable-gradients: true;
 $brand-primary: $primaryColor;
-$btn-secondary-border: $white;
 $badge-default-bg: $backgroundColorLight;
 $grid-breakpoints: (
         xs: 0,
@@ -92,7 +91,7 @@ $container-max-widths: (
 ) !default;
 
 $primary:       $primaryColor;
-//$secondary:     $secondaryColor;
+$secondary:     $secondaryColor;
 $success:       $highlightColor;
 $info:          $primaryColorLight;
 $warning:       $secondaryColorLight;

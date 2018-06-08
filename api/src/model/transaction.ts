@@ -16,7 +16,7 @@ interface ITransaction extends ITransactionModel, mongoose.Document {};
 
 let transactionSchema = new mongoose.Schema({
     date: { type: Date, default: new Date },
-    transactionType: { type: mongoose.Schema.Types.ObjectId, ref: "ttypes" },
+    transactionType: { type: mongoose.Schema.Types.ObjectId, ref: "transactionTypes" },
     title: String,
     amount: Number,
     user: { type: mongoose.Schema.Types.ObjectId, ref: "users" },

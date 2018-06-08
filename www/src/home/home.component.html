@@ -1,18 +1,20 @@
 <website-header></website-header>
 <div class="banner d-flex align-items-center" id="banner">
   <div class="container">
-    <div class="row pt-5 pb-5 no-gutters">
+    <div class="row pt-5 pb-5 no-gutters align-items-center flex-sm-column-reverse flex-lg-row">
       <div class="col-lg">
         <h2 class="bold">Verwaltung leicht gemacht</h2>
         <p>Effiziente und bequeme Verwaltung ihrer Moscheeeinrichtung. Alles auf einem Ort: Mitgliederverwaltung,
           Buchhaltung, Sitzungsprotokolle, Terminverwaltung und Inventarverwaltung.</p>
         <br/>
         <div class="d-flex">
-          <button class="btn primary mr-3 mt-3" [routerLink]="['/overview']">Mehr details</button>
-          <button class="btn secondary mr-3 mt-3" [routerLink]="['/register']">Jetzt registrieren</button>
+          <button class="btn btn-primary mr-3 mt-3" [routerLink]="['/overview']">Mehr details</button>
+          <button class="btn btn-secondary mr-3 mt-3" [routerLink]="['/register']">Jetzt registrieren</button>
         </div>
       </div>
-      <div class="col-lg"></div>
+      <div class="col-lg d-flex justify-content-center">
+        <img class="mb-5" src="/_assets/img/logo.png" alt="dzemat" height="250px" />
+      </div>
     </div>
   </div>
 </div>

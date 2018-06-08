@@ -52,24 +52,37 @@ AuthRouter.post("/user", isAdmin, function (req: any, res: any) {
 });
 
 AuthRouter.get("/user", isAdmin, function (req: any, res: any) {
-    let query = User.find();
+    let query = {};
+    let options = {};
 
     if(req.query["jamia"])
-        query.where("jamia", mongoose.Types.ObjectId(req.query["jamia"]));
+        query["jamia"] = req.query["jamia"];
     if(req.query["name"])
-        query.regex("name", new RegExp(req.query["name"], "i"));
+        query["name"] = new RegExp(req.query["name"], "i");
 
-    query.sort('name');
-    query.limit(req.query.pageSize);
-    query.skip(req.query.page);
-    query
-        .populate("jamia")
-        .populate({path: 'transactions'})
-        .select("-password")
-        .exec((err, users) => {
+    options["select"] = "-password";
+    options["sort"] = "name";
+    options["populate"] = ["jamia", "transactions", "transactions.transactionTypes"];
+
+    if(req.query.page && req.query.pageSize) {
+        options["page"] = Number(req.query.page);
+        options["limit"] = Number(req.query.pageSize);
+    }
+
+    User.paginate(query, options).then((result) => {
+        res.json(result);
+    });
+});
+
+AuthRouter.get("/user/:id", isAdmin, function (req: any, res: any) {
+    User.findById(req.params.id)
+        .exec((err, user) => {
             if (err)
                 return res.status(500).send(err);
-            res.json(users);
+            else if (!user)
+                return res.status(404).send();
+            else
+                return res.send(user);
         });
 });
 

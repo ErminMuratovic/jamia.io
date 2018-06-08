@@ -67,6 +67,38 @@ bs-datepicker-container {
   border-bottom: 1px solid #d3d3d3;
 }
 
+.input-group-addon {
+  background: none;
+  border: none;
+  border-bottom: 1px solid #ced4da;
+}
+
+input, .form-control {
+  background: none;
+  border: none;
+  border-radius: 0px;
+  border-bottom: 1px solid #ced4da;
+}
+input:focus, .form-control:focus {
+  border: none;
+  box-shadow: none;
+  background-color: transparent;
+  border-bottom: 2px solid #aeb4ba;
+}
+
+input[type=file] {
+  border: none;
+}
+input.op0 {
+  opacity: 0;
+}
+
+.btn-light {
+  background: none;
+  border: 1px solid #ced4da;
+}
+
+
 /* elyfant defaults */
 
 body {
@@ -185,21 +217,6 @@ button:not(.flat) {
 
 button.stretch {
   width: 100%;
-}
-
-button.primary {
-  color: $white;
-  background-color: $primaryColor;
-}
-
-button.secondary {
-  color: $white;
-  background-color: $secondaryColor;
-}
-
-button.success {
-  color: $white;
-  background-color: $highlightColor;
 }
 
 button .fa-redo { display: none; }

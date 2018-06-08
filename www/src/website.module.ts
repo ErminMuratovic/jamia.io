@@ -44,6 +44,8 @@ import {JamiaService} from "./_services/jamia.service";
 import {FinanceService} from "./_services/finance.service";
 import {MembersComponent} from "./dashboard/members/members.component";
 import {AccountingComponent} from "./dashboard/accounting/accounting.component";
+import {OverviewComponent} from "./overview/overview.component";
+import {MemberComponent} from "./dashboard/member/member.component";
 
 defineLocale('de', de);
 
@@ -90,6 +92,8 @@ defineLocale('de', de);
     DashboardComponent,
     MembersComponent,
     AccountingComponent,
+    OverviewComponent,
+    MemberComponent,
   ],
   providers: [
     AuthService,

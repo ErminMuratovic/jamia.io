@@ -1,0 +1,124 @@
+<website-header></website-header>
+<div class="dashboard products-container mb-5">
+  <div class="container">
+    <div class="row">
+      <div class="col pt-4">
+        <h6>
+          <i class="fas fa-th-large"></i> <a [routerLink]="['/dashboard']">Dashboard</a> / <a
+          [routerLink]="['/dashboard/members']">Mitglieder</a> / <span
+          *ngIf="member['_id']">Mitglied bearbeiten</span><span *ngIf="!member['_id']">Mitglied hinzufügen</span>
+        </h6>
+      </div>
+    </div>
+    <div class="row mt-5 align-items-center">
+      <div class="col">
+        <h4 *ngIf="member['_id']">Mitglied bearbeiten</h4>
+        <h4 *ngIf="!member['_id']">Mitglied hinzufügen</h4>
+      </div>
+    </div>
+    <div class="row" *ngIf="loadingMember">
+      <div class="col-auto">
+        <i class="fas fa-spinner-third fa-spin fa-lg"></i>
+      </div>
+    </div>
+    <div class="row mt-5 mb-5">
+      <div class="col-md-10">
+        <form #memberForm="ngForm" #memberFormElement (ngSubmit)="saveMember()" *ngIf="!loadingMember && member">
+          <div class="row">
+            <div class="col-2 d-flex align-items-center justify-content-end">
+              <div class="user-image" *ngIf="member.profileImage">
+                <img [src]="getProfileImage()"/>
+              </div>
+              <div class="user-icon" *ngIf="!member.profileImage">
+                <i class="fas fa-user-circle fa-5x" aria-hidden="true"></i>
+              </div>
+            </div>
+            <div class="col-10">
+              <div class="form-group image-upload">
+                <input type="file" class="form-control-file op0" name="profileImage" id="profileImage" accept="image/*"
+                       (change)="changeProfileImage($event)"/>
+                <label class="link" for="profileImage"><strong class="changeProfileImageButton">Profilbild auswählen</strong></label>
+              </div>
+            </div>
+          </div>
+          <br/>
+          <div class="row">
+            <div class="col-6">
+              <div class="form-group row">
+                <label class="col-4 col-form-label" for="name">Anrede</label>
+                <div class="col-8">
+                  <select class="form-control" id="gender" name="gender" [(ngModel)]="member.gender">
+                    <option disabled>Auswählen</option>
+                    <option value="male">Herr</option>
+                    <option value="female">Frau</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+            <div class="col-6">
+              <div class="form-group row">
+                <label class="col-4 col-form-label" for="name">Titel</label>
+                <div class="col-8">
+                  <input type="text" name="academicTitle" id="academicTitle" class="form-control"
+                         [(ngModel)]="member.academicTitle"/>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="form-group row">
+            <label class="col-2 col-form-label" for="name">Name</label>
+            <div class="col-10">
+              <input type="text" name="name" id="name" class="form-control" [(ngModel)]="member.name"/>
+            </div>
+          </div>
+          <div class="form-group row">
+            <label class="col-2 col-form-label" for="name">Moscheeeinrichtung</label>
+            <div class="col-10">
+              <!--organization-selector [(organization)]="member.organization"></organization-selector-->
+            </div>
+          </div>
+          <div class="form-group row">
+            <label class="col-2 col-form-label" for="email">E-Mail</label>
+            <div class="col-10">
+              <input type="email" name="email" id="email" class="form-control" [(ngModel)]="member.email"
+                     [readonly]="true"/>
+              <small id="emailHelp" class="form-text text-muted">Die E-Mail-Adresse kann derzeit nicht geändert
+                werden.
+              </small>
+            </div>
+          </div>
+          <div class="form-group row">
+            <label class="col-2 col-form-label" for="phone">Telefon</label>
+            <div class="col-10">
+              <input type="tel" name="phone" id="phone" class="form-control" [(ngModel)]="member.phone"/>
+            </div>
+          </div>
+          <div class="form-group row">
+            <label class="col-2 col-form-label" for="mobilephone">Mobil-Telefon</label>
+            <div class="col-10">
+              <input type="tel" name="mobilephone" id="mobilephone" class="form-control"
+                     [(ngModel)]="member.mobilePhone"/>
+            </div>
+          </div>
+          <div class="form-group row">
+            <label class="col-2 col-form-label">Adresse</label>
+            <div class="col-8">
+              <input type="text" name="street" id="street" class="form-control" [(ngModel)]="member.address"
+                     placeholder="Adresse" />
+            </div>
+          </div>
+          <div class="form-group row">
+            <label class="col-2 col-form-label"></label>
+            <div class="col-10">
+              <p *ngIf="savingMember"><i class="far fa-spinner-third fa-spin"></i> Wird gespeichert ...</p>
+              <button class="btn flat" (click)="saveMember()" *ngIf="!savingMember"><i class="far fa-save"></i>
+                Speichern
+              </button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+<website-footer></website-footer>

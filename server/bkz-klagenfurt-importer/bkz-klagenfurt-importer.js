@@ -31,7 +31,9 @@ workbook.xlsx.readFile(process.argv[2])
     .then(function() {
         workbook.eachSheet(function(worksheet) {
             worksheet.eachRow({includeEmpty: false}, function(row) {
-                if(worksheet.name == "kassabuch")
+                if(worksheet.name == "clanovi")
+                    processClanoviRow(row);
+                else if(worksheet.name == "kassabuch")
                     processKassabuchRow(row);
                 else if(worksheet.name == "prilog")
                     processPrilogRow(row);
@@ -45,6 +47,46 @@ workbook.xlsx.readFile(process.argv[2])
         fs.writeFile('../../api/src/db/data/transactiontypes.json', JSON.stringify(transactiontypes, null, 4));
         fs.writeFile('../../api/src/db/data/transactions.json', JSON.stringify(transactions, null, 4));
     });
+
+function findUser(name) {
+    var nameL = name.toLowerCase();
+    var nameParts = nameL.split(" ").filter(function(n) { return n.length > 3; });
+    return users.find(function(u) {
+        var userNameL = u.name.toLowerCase();
+        if(nameL.indexOf(userNameL) != -1)
+            return true;
+        var matches = nameParts.reduce(function(matches, namePart) {
+            if(userNameL.indexOf(namePart) != -1)
+                return matches+1;
+            else
+                return matches;
+        }, 0);
+        if(matches > 1)
+            return true;
+        return false;
+    });
+}
+
+function processClanoviRow(row) {
+    try {
+        var name = row.getCell(2).value+" "+row.getCell(3).value;
+        var user = findUser(name);
+        if(!user) {
+            user = {
+                "_id": ObjectID(),
+                "name": name,
+                "address": row.getCell(4).value+", "+row.getCell(5).value+" "+row.getCell(6).value,
+                "citizenship": row.getCell(7).value,
+                "mobilePhone": row.getCell(8).value,
+                "jamia": jamia["_id"],
+                "transactions": []
+            };
+            users.push(user);
+        }
+    } catch(e) {
+        console.error("[ERROR]", e);
+    }
+}
 
 function processKassabuchRow(row) {
     try {
@@ -64,14 +106,7 @@ function processKassabuchRow(row) {
                 if(vazifaTypes.indexOf(typ) != -1) {
                     if(description && description.indexOf("Vazifa") != -1) {
                         var name = description.toString().split(" Vazifa")[0];
-                        var user = users.find(function(u) {
-                            if(name.indexOf(u.name) != -1)
-                                return true;
-                            var nameParts = u.name.split(" ");
-                            if(nameParts.length > 2 && name.indexOf(nameParts[0]) != -1 && name.indexOf(nameParts[1]) != -1)
-                                return true;
-                            return false;
-                        });
+                        var user = findUser(name);
                         if(!user) {
                             user = {
                                 "_id": ObjectID(),
@@ -145,14 +180,7 @@ function processPrilogRow(row) {
                 var group = transactiontypes.find(function(s) { return s.key == "K-7" });
 
                 var name = description.toString();
-                var user = users.find(function(u) {
-                    if(name.indexOf(u.name) != -1)
-                        return true;
-                    var nameParts = u.name.split(" ");
-                    if(nameParts.length > 2 && name.indexOf(nameParts[0]) != -1 && name.indexOf(nameParts[1]) != -1)
-                        return true;
-                    return false;
-                });
+                var user = findUser(name);
                 if(user) {
                     userId = user["_id"];
                 }

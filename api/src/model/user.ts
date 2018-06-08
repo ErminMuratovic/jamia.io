@@ -2,7 +2,7 @@
 
 import * as mongoose from "mongoose";
 import * as bcrypt from "bcrypt-nodejs";
-import {ITransaction} from "./transaction";
+import * as mongoosePaginate from "mongoose-paginate";
 
 let SALT_WORK_FACTOR = 10;
 let MAX_LOGIN_ATTEMPTS = 5;
@@ -21,19 +21,11 @@ interface IUser {
     salutation: String;
     phone: String;
     mobilePhone: String;
-    address: {
-        street: String;
-        number: String;
-        postalCode: String;
-        city: String;
-        state: String;
-        country: String;
-        latitude: String;
-        longitude: String;
-        loc: {
-            type: String,
-            coordinates: Number[]
-        };
+    citizenship: String;
+    address: String;
+    loc: {
+        type: String,
+        coordinates: Number[]
     };
     homepage: String;
     profileImage: mongoose.Schema.Types.ObjectId;
@@ -72,20 +64,11 @@ let UserSchema = new mongoose.Schema({
     salutation: String,
     phone: String,
     mobilePhone: String,
-    address: {
-        street: String,
-        number: String,
-        postalCode: String,
-        city: String,
-        state: String,
-        country: String,
-        latitude: String,
-        longitude: String,
-        loc: {
-            type: {type: String},
-            coordinates: {type: Array}
-        },
-        publicly: Boolean,
+    citizenship: String,
+    address: String,
+    loc: {
+        type: {type: String},
+        coordinates: {type: Array}
     },
     homepage: String,
     profileImage: { type: mongoose.Schema.Types.ObjectId, ref: "assets" },
@@ -197,6 +180,8 @@ UserSchema.pre('save', function (done) {
         return done();
     }
 });
+
+UserSchema.plugin(mongoosePaginate);
 
 let User = mongoose.model<IUserDocument, IUserModel>("users", UserSchema);
 export {User,IUser};

@@ -56,6 +56,10 @@ class AuthService implements IAuthService {
     return this.http.put(this.apiUrl + "/user/" + user._id, user, this.httpOptions).map((response: Response) => response.json());
   }
 
+  createUser(user) {
+    return this.http.post(this.apiUrl + "/user", user, this.httpOptions).map((response: Response) => response.json());
+  }
+
   confirmEmail(confirmationId) {
     return this.http.put(this.apiUrl + "/confirm/" + confirmationId, {}, this.httpOptions).map((response: Response) => response.json());
   }
@@ -73,16 +77,20 @@ class AuthService implements IAuthService {
     if (searchParams) {
       requestOptions.params = new URLSearchParams();
 
-      if (searchParams["jamia"])
+      if (searchParams.hasOwnProperty("jamia"))
         requestOptions.params.set("jamia", searchParams["jamia"]);
-      if (searchParams["name"])
+      if (searchParams.hasOwnProperty("name"))
         requestOptions.params.set("name", searchParams["name"]);
-      if (searchParams["pageSize"])
+      if (searchParams.hasOwnProperty("pageSize"))
         requestOptions.params.set("pageSize", searchParams["pageSize"]);
-      if (searchParams["page"])
+      if (searchParams.hasOwnProperty("page"))
         requestOptions.params.set("page", searchParams["page"]);
     }
     return this.http.get(this.apiUrl + "/user", requestOptions).map((response: Response) => response.json());
+  }
+
+  getUser(userId) {
+    return this.http.get(this.apiUrl + "/user/" + userId, this.httpOptions).map((response: Response) => response.json());
   }
 }
 

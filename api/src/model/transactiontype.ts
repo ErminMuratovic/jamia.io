@@ -16,5 +16,5 @@ let transactionTypeSchema = new mongoose.Schema({
     jamia: mongoose.Schema.Types.ObjectId
 });
 
-let TransactionType = mongoose.model<ITransactionType>("ttypes", transactionTypeSchema);
+let TransactionType = mongoose.model<ITransactionType>("transactionTypes", transactionTypeSchema);
 export {TransactionType, ITransactionType};

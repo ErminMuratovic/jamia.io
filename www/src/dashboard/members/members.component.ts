@@ -24,7 +24,7 @@ export class MembersComponent implements OnInit {
   public memberSearch = {
     name: "",
     pageSize: 20,
-    page: 0,
+    page: 1,
     jamia: null
   };
 
@@ -50,7 +50,10 @@ export class MembersComponent implements OnInit {
   }
 
   loadUsers() {
+    if(this.loadingUsers)
+      return setTimeout(() => this.loadUsers(), 200);
     this.users = [];
+    this.memberSearch.page = 1;
     this.getUsersNextPage();
   }
 
@@ -58,7 +61,7 @@ export class MembersComponent implements OnInit {
     this.loadingUsers = true;
     this.authService.getUsers(this.memberSearch)
       .subscribe(result => {
-        this.users = result.users;
+        this.users = this.users.concat(result.docs);
         this.totalMembers = result.total;
         this.users.forEach(user => {
           user.donation = user.transactions.reduce((sum, a) => {
@@ -68,6 +71,7 @@ export class MembersComponent implements OnInit {
               return sum;
           }, 0);
         });
+        this.memberSearch.page++;
         this.loadingUsers = false;
       });
   }
@@ -79,6 +83,11 @@ export class MembersComponent implements OnInit {
   }
 
   onMemberSearchChanged(userSearch) {
+    this.loadUsers();
+  }
+
+  changePageSizeMembers(pageSize) {
+    this.memberSearch.pageSize = pageSize;
     this.loadUsers();
   }
 

@@ -31,7 +31,7 @@
 
   .user-body {
     border-top: 1px solid #e9e9e9;
-    transition: max-height .5s ease, opacity .5s ease, margin-top .1s ease, padding-top .1s ease;
+    transition: max-height 1s .2s ease, opacity .5s ease, margin-top .1s .9s ease, padding-top .1s .9s ease;
     overflow: hidden;
     margin-top: 0px;
     padding-top: 0px;
@@ -50,6 +50,8 @@
     padding-top: 10px;
     max-height: 200px;
     opacity: 1;
+
+    transition: max-height 1s ease, opacity .5s .2s ease, margin-top .1s ease, padding-top .1s ease;
   }
 }
 

@@ -19,7 +19,7 @@ export class DashboardComponent implements OnInit {
   public jamia;
   public transactions;
   public finance;
-  public users;
+  public totalUsers;
 
   constructor(private authService: AuthService, private jamiaService: JamiaService, private financeService: FinanceService) {
   }
@@ -46,8 +46,8 @@ export class DashboardComponent implements OnInit {
   loadJamia() {
     if (this.jamia) {
       this.authService.getUsers({jamia: this.jamia["_id"]})
-        .subscribe(users => {
-          this.users = users;
+        .subscribe(response => {
+          this.totalUsers = response.total;
         });
       this.financeService.getTransactions({jamia: this.jamia["_id"]})
         .subscribe(transactions => {

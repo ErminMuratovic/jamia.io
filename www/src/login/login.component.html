@@ -4,7 +4,7 @@
     <div class="row justify-content-center">
       <div class="col-lg-6 col-xl-4">
         <form #loginForm="ngForm" #loginFormElement (ngSubmit)="loginClick()">
-          <h1 class="bold mt-5">Anmelden</h1>
+          <h1 class="bold mt-5 mb-5">Anmelden</h1>
           <div class="form-group"
                [ngClass]="{'is-invalid': isFieldManipulated(loginForm, emailInput) && fieldHasErrors(emailInput)}">
             <div class="input-group">

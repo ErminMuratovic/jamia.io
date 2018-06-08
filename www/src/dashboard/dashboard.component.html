@@ -25,7 +25,7 @@
           <p class="small">Hier im Dashbaord hast du eine Übersicht über dein Dzemat.</p>
           <div class="row">
             <div class="col-12">
-              <button class="btn primary align-content-stretch" [routerLink]="['/dashboard/user']">
+              <button class="btn btn-primary align-content-stretch" [routerLink]="['/dashboard/user']">
                 <i class="fas fa-user"></i> Profil bearbeiten
               </button>
             </div>
@@ -56,7 +56,7 @@
               <li class="list-group-item link d-flex flex-column align-items-stretch" [routerLink]="['/dashboard/members']">
                 <p class="d-flex justify-content-between align-items-center">
                   <span><i class="fal fa-users fa-lg mr-2"></i> Mitglieder</span>
-                  <span class="badge badge-primary" *ngIf="users" [textContent]="users.length"></span>
+                  <span class="badge badge-primary" [textContent]="totalUsers"></span>
                 </p>
               </li>
               <li class="list-group-item link d-flex flex-column align-items-stretch" [routerLink]="['/dashboard/accounting']">
