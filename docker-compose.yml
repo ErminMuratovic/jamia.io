@@ -9,8 +9,6 @@ services:
       - docker_net
     external_links:
       - mongodb
-    depends_on:
-      - mongodb
     environment:
       - NODE_ENV
       - VIRTUAL_HOST=${JAMIA_API_HOSTNAME}
