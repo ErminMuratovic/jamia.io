@@ -7,7 +7,7 @@ services:
     mem_limit: 1GB
     networks:
       - docker_net
-    links:
+    external_links:
       - mongodb
     depends_on:
       - mongodb
@@ -33,4 +33,4 @@ services:
 
 networks:
   docker_net:
-    driver: bridge
+    external: true
